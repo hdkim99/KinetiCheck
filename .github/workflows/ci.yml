@@ -59,8 +59,8 @@ jobs:
         run: python -m ruff check .
       - name: Strict typing
         run: python -m mypy
-      - name: Unit, regression, integration, and import-isolation tests
-        run: python -m pytest -m "not gui"
+      - name: Unit, regression, integration, GUI, and import-isolation tests
+        run: xvfb-run -a python -m pytest
       - name: Scientific and example CLI smoke
         run: |
           kineticheck validate
