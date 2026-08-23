@@ -1,0 +1,109 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kineticheck"
+version = "0.1.0"
+description = "Explicit transport-limitation screening for heterogeneous catalytic kinetics."
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "Peter Kim" }]
+keywords = ["catalysis", "kinetics", "mass-transfer", "reaction-engineering"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Science/Research",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Chemistry",
+]
+dependencies = [
+  "openpyxl>=3.1.5,<4",
+  "pint>=0.24.4,<0.26",
+]
+
+[project.optional-dependencies]
+gui = []
+plot = ["matplotlib>=3.9,<4"]
+dev = [
+  "build==1.5.0",
+  "matplotlib>=3.9,<4",
+  "mypy>=1.14,<2",
+  "pip-audit>=2.9,<3",
+  "pytest>=8.3,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<0.17",
+  "twine>=6,<7",
+  "types-openpyxl>=3.1.5,<4",
+]
+
+[project.scripts]
+kineticheck = "kineticheck.cli:main"
+kineticheck-gui = "kineticheck.gui:main"
+
+[project.urls]
+Homepage = "https://github.com/hdkim99/KinetiCheck"
+Documentation = "https://github.com/hdkim99/KinetiCheck#readme"
+Issues = "https://github.com/hdkim99/KinetiCheck/issues"
+Repository = "https://github.com/hdkim99/KinetiCheck"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kineticheck"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "/docs",
+  "/examples",
+  "/.github",
+  "/LICENSE",
+  "/README.md",
+  "/CHANGELOG.md",
+  "/CONTRIBUTING.md",
+  "/CITATION.cff",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src", "tests"]
+warn_unreachable = true
+follow_imports = "skip"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--cov=kineticheck",
+  "--cov-branch",
+  "--cov-report=term-missing",
+  "--cov-fail-under=70",
+]
+testpaths = ["tests"]
+markers = ["gui: tests that create a Tk window"]
+
+[tool.coverage.report]
+exclude_also = [
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+  "raise NotImplementedError",
+]
+show_missing = true

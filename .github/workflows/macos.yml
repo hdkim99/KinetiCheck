@@ -1,0 +1,70 @@
+name: macOS GUI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kineticheck-macos-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  gui:
+    name: macOS / Tk workflow and clean wheel
+    # Apply the same public-fork trust boundary used for the persistent runner.
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.actor == github.repository_owner &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: macos-15
+    timeout-minutes: 25
+    env:
+      PIP_NO_CACHE_DIR: "1"
+      PYTHONNOUSERSITE: "1"
+    steps:
+      - name: Check out source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.0.0
+        with:
+          clean: true
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.0.0
+        with:
+          python-version: "3.12"
+      - name: Record platform
+        run: |
+          sw_vers
+          uname -m
+          python --version
+      - name: Install source with GUI and plotting checks
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+      - name: Focused scientific and CLI smoke
+        run: |
+          python -m pytest tests/test_core.py tests/test_units_application.py tests/test_gui.py
+          kineticheck validate
+          kineticheck evaluate examples/operating_point.json --output "$RUNNER_TEMP/point.json"
+      - name: GUI import, workflow, export, close, and process exit
+        run: python -m kineticheck.gui --smoke-test
+      - name: Agg backend isolation smoke
+        run: kineticheck plot examples/operating_points.csv --output "$RUNNER_TEMP/envelope.pdf"
+      - name: Build and clean-wheel smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m build
+          wheel="$(find dist -maxdepth 1 -name '*.whl' -print -quit)"
+          clean_env="$RUNNER_TEMP/kineticheck-macos-wheel"
+          python -m venv "$clean_env"
+          "$clean_env/bin/python" -m pip install --no-cache-dir "$wheel"
+          "$clean_env/bin/python" -m pip check
+          "$clean_env/bin/kineticheck" validate
+          "$clean_env/bin/python" -m kineticheck.gui --smoke-test
+          "$clean_env/bin/python" -c "import sys, kineticheck; assert not any(n.startswith(('PyQt', 'PySide')) for n in sys.modules)"

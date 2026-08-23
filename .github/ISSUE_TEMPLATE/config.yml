@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Data confidentiality reminder
+    url: https://github.com/hdkim99/KinetiCheck/security
+    about: Do not post unpublished, proprietary, personal, or confidential research data publicly.

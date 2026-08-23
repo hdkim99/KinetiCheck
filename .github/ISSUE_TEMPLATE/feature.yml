@@ -1,0 +1,17 @@
+name: Feature request
+description: Propose one bounded research workflow.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Research decision and current limitation
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Scientific definition, validity range, and authoritative source
+    validations:
+      required: true

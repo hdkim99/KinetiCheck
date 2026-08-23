@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use KinetiCheck, please cite the software and the original criterion publications."
+title: "KinetiCheck"
+type: software
+authors:
+  - family-names: "Kim"
+    given-names: "Peter"
+repository-code: "https://github.com/hdkim99/KinetiCheck"
+url: "https://github.com/hdkim99/KinetiCheck"
+version: 0.1.0
+license: BSD-3-Clause
+keywords:
+  - heterogeneous catalysis
+  - reaction engineering
+  - transport limitations

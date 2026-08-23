@@ -1,0 +1,20 @@
+name: Scientific result question
+description: Ask about an equation, definition, unit, threshold, or interpretation.
+title: "[Science] "
+labels: [scientific-question]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not post unpublished/confidential data. State the exact rate basis and cite the proposed definition."
+  - type: textarea
+    id: definition
+    attributes:
+      label: Equation, convention, and reference
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Minimal synthetic inputs with units and rate basis
+    validations:
+      required: true

@@ -1,0 +1,33 @@
+{
+  "run_id": "demo-600K",
+  "rate": {
+    "value": 0.002,
+    "unit": "mol / kilogram / second",
+    "basis": "mass_catalyst",
+    "pellet_density": {"value": 1000, "unit": "kg / meter ** 3"}
+  },
+  "particle_radius": {"value": 1.0, "unit": "millimeter"},
+  "criteria": {
+    "weisz_prater": {
+      "effective_diffusivity": {"value": 1e-5, "unit": "meter ** 2 / second"},
+      "surface_concentration": {"value": 10, "unit": "mol / meter ** 3"}
+    },
+    "mears_mass": {
+      "reaction_order": 1,
+      "mass_transfer_coefficient": {"value": 0.02, "unit": "meter / second"},
+      "bulk_concentration": {"value": 10, "unit": "mol / meter ** 3"}
+    },
+    "mears_heat": {
+      "reaction_enthalpy": {"value": -100, "unit": "kilojoule / mol"},
+      "activation_energy": {"value": 80, "unit": "kilojoule / mol"},
+      "heat_transfer_coefficient": {"value": 250, "unit": "watt / meter ** 2 / kelvin"},
+      "bulk_temperature": {"value": 600, "unit": "kelvin"}
+    },
+    "anderson_heat": {
+      "reaction_enthalpy": {"value": -100, "unit": "kilojoule / mol"},
+      "activation_energy": {"value": 80, "unit": "kilojoule / mol"},
+      "effective_thermal_conductivity": {"value": 0.5, "unit": "watt / meter / kelvin"},
+      "surface_temperature": {"value": 600, "unit": "kelvin"}
+    }
+  }
+}

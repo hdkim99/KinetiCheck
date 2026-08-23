@@ -1,0 +1,26 @@
+name: Real dataset compatibility
+description: Propose a public, licensed dataset or report an import issue.
+title: "[Dataset] "
+labels: [dataset]
+body:
+  - type: markdown
+    attributes:
+      value: "Only public data may be linked. Never upload unpublished or confidential laboratory data."
+  - type: input
+    id: doi
+    attributes:
+      label: DOI or persistent public URL
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: Dataset license
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Files, checksum, and intended validation scope
+    validations:
+      required: true
