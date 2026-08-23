@@ -67,12 +67,14 @@ No implicit conversion between those bases is allowed.
 - Four-criterion hand calculation with exact intermediate values.
 - Boundary, invalid physical input, mixed-unit, rate-basis, batch CSV/XLSX, CLI, export, and GUI
   lifecycle tests.
-- Independent reproduction of the `3.910e-5` Mears external-mass value reported in the electronic
-  supplement to RSC article `C5CY00934K`.
+- Published-case arithmetic across three catalytic systems: Mo/HZSM-5 methane
+  dehydroaromatization, Mo2C acetic-acid hydrodeoxygenation, and Pt/Cu-CuZrOx glycerol oxidation.
+- A structured provenance/checksum manifest and discrepancy register distinguish software failures
+  from source inconsistencies, convention differences, bounds, and unavailable inputs.
 
-No suitably licensed full public operating-point dataset has yet been adopted; **real-data dataset
-validation is pending**. The literature-point reproduction is not described as dataset validation.
-See [validation](docs/validation.md).
+These cases validate published arithmetic, not raw instrument data or independently measured
+properties. See [validation](docs/validation.md) and the
+[public-case audit](docs/public-data-validation.md).
 
 ## GUI and supported platforms
 
@@ -106,6 +108,7 @@ export, close, and process exit. See [macOS notes](docs/macos.md).
 - [Scientific definitions and references](docs/scientific-basis.md)
 - [Batch schema](docs/batch-schema.md)
 - [Validation record](docs/validation.md)
+- [Public data sources and discrepancy audit](docs/public-data-validation.md)
 - [Naming and competitive audit](docs/naming-audit.md)
 - [macOS and GUI policy](docs/macos.md)
 - [Contributing](CONTRIBUTING.md)

@@ -1,0 +1,30 @@
+{
+  "run_id": "KC-PUB-002-MO2C-403K",
+  "rate": {
+    "value": 1.50e-7,
+    "unit": "mol / gram / second",
+    "basis": "mass_catalyst",
+    "pellet_density": {
+      "value": 759.0,
+      "unit": "kg / meter ** 3"
+    }
+  },
+  "particle_radius": {
+    "value": 1.0,
+    "unit": "micrometer"
+  },
+  "criteria": {
+    "weisz_prater": {
+      "effective_diffusivity": {
+        "value": 8.03e-6,
+        "unit": "meter ** 2 / second"
+      },
+      "surface_concentration": {
+        "value": 2.86e-3,
+        "unit": "mol / meter ** 3"
+      },
+      "surface_concentration_assumed_bulk": true,
+      "threshold": 1.0
+    }
+  }
+}

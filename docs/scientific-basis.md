@@ -39,7 +39,10 @@ Reference: D. E. Mears, “Tests for Transport Limitations in Experimental Catal
 
 The default comparison is `< 0.15`. Enthalpy and rate must use the same reaction/species
 stoichiometric basis. `h` is supplied for the operating point; KinetiCheck does not silently choose a
-Nusselt correlation.
+Nusselt correlation. The implemented characteristic length is the spherical particle radius
+`R_p = d_p/2`. A source that instead inserts `V_p/A_p = R_p/3` is using a numerically different
+convention and must not be compared without adjustment; `KC-PUB-006` in the
+[public-case audit](public-data-validation.md) demonstrates the factor-of-three consequence.
 
 Reference: D. E. Mears, “Diagnostic Criteria for Heat Transport Limitations in Fixed Bed Reactors,”
 *Journal of Catalysis* **20** (1971) 127–131,
@@ -51,7 +54,9 @@ Reference: D. E. Mears, “Diagnostic Criteria for Heat Transport Limitations in
 
 The rearranged 5% isothermality comparison is `< 0.75`. Some secondary sources round the numerical
 constant; KinetiCheck preserves `0.75`. The characteristic length is the radius of the spherical
-pellet convention and `λ_eff` is the effective pellet thermal conductivity.
+pellet convention and `λ_eff` is the effective pellet thermal conductivity. A direct parabolic
+temperature-rise expression such as `T_ave/T_s` without the activation-energy factor is a related
+thermal balance, but it is not this dimensionless 5% rate-deviation screen.
 
 Reference: J. B. Anderson, “A Criterion for Isothermal Behavior of a Catalyst Pellet,” *Chemical
 Engineering Science* **18** (1963) 147–148.

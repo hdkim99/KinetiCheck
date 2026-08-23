@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-08-23",
+  "software_defects_found": 0,
+  "taxonomy": {
+    "SOFTWARE_DEFECT": "The released implementation disagrees with its declared equation or unit contract.",
+    "SOURCE_INTERNAL_INCONSISTENCY": "A source's printed equation, units, input table, or reported arithmetic are mutually inconsistent.",
+    "DEFINITION_CONVENTION_MISMATCH": "The source and KinetiCheck intentionally evaluate different published formulations.",
+    "CHARACTERISTIC_LENGTH_MISMATCH": "Radius, diameter, V/A, crystallite size, or pellet size is not the same quantity.",
+    "RATE_BASIS_AMBIGUITY": "Mass, pellet-volume, or bed-volume conversion density is not unambiguously stated.",
+    "SURFACE_BULK_ASSUMPTION": "A pellet-surface concentration is replaced with a bulk concentration.",
+    "THRESHOLD_CONVENTION_DIFFERENCE": "The numerical criterion is shared but the comparison boundary differs.",
+    "INPUT_PRECISION_OR_BOUND": "A rounded value, inequality bound, or omitted input prevents exact replay.",
+    "INSUFFICIENT_PUBLIC_INPUT": "The public record does not contain all inputs needed for an independent calculation.",
+    "SOURCE_RETRIEVAL_FAILURE": "The cited source file could not be retrieved and integrity checked."
+  },
+  "findings": [
+    {
+      "finding_id": "KC-FAIL-001",
+      "source_id": "KC-PUB-001",
+      "category": "RATE_BASIS_AMBIGUITY",
+      "observation": "The supplement calls rho_b catalyst bed density, while KinetiCheck's mass-rate conversion requires apparent pellet density.",
+      "effect": "The published number is reproduced, but the replay validates arithmetic rather than proving equivalence of physical volume bases.",
+      "disposition": "documented; no code change"
+    },
+    {
+      "finding_id": "KC-FAIL-002",
+      "source_id": "KC-PUB-002",
+      "category": "SOURCE_INTERNAL_INCONSISTENCY",
+      "observation": "Equations S4-S7 contain a catalyst surface-area factor S. The reported Weisz-Prater, internal-temperature, external-concentration, and external-temperature numbers are all reproduced only after omitting S and converting the rate from per gram to per kilogram.",
+      "effect": "Including S gives a dimensionally inconsistent expression and changes C_WP from 4.957e-6 to 0.4957.",
+      "disposition": "standard KinetiCheck equation retained; source inconsistency documented"
+    },
+    {
+      "finding_id": "KC-FAIL-003",
+      "source_id": "KC-PUB-002",
+      "category": "CHARACTERISTIC_LENGTH_MISMATCH",
+      "observation": "The source uses a 2 micrometer TEM crystallite diameter for internal checks and a 300 micrometer mesh-based pellet diameter for external balances.",
+      "effect": "Only the internal Weisz-Prater replay uses R=dp/2=1 micrometer; the two length scales must not be interchanged.",
+      "disposition": "documented; no code change"
+    },
+    {
+      "finding_id": "KC-FAIL-004",
+      "source_id": "KC-PUB-002",
+      "category": "DEFINITION_CONVENTION_MISMATCH",
+      "observation": "The source's Anderson-labelled result is Tave/Ts from a parabolic temperature balance without activation energy. KinetiCheck reports an activation-energy-weighted 5% screening group.",
+      "effect": "The values are not directly comparable.",
+      "disposition": "excluded from regression; no code change"
+    },
+    {
+      "finding_id": "KC-FAIL-005",
+      "source_id": "KC-PUB-002",
+      "category": "SURFACE_BULK_ASSUMPTION",
+      "observation": "The source explicitly assumes C_A,s equals the bulk acetic-acid concentration.",
+      "effect": "The fixture sets surface_concentration_assumed_bulk=true, so KinetiCheck returns WARN rather than silently treating the assumption as measured.",
+      "disposition": "existing warning behavior verified"
+    },
+    {
+      "finding_id": "KC-FAIL-006",
+      "source_id": "KC-PUB-002",
+      "category": "THRESHOLD_CONVENTION_DIFFERENCE",
+      "observation": "The source interprets C_WP much less than 1; KinetiCheck defaults to the declared conservative 0.30 convention.",
+      "effect": "The fixture overrides the threshold to 1.0 to reproduce the source convention; the PASS conclusion is unchanged.",
+      "disposition": "explicit threshold override; no code change"
+    },
+    {
+      "finding_id": "KC-FAIL-007",
+      "source_id": "KC-PUB-003",
+      "category": "INPUT_PRECISION_OR_BOUND",
+      "observation": "Supplementary Table 9 supplies R1 only as <1.0e-7 m. Using that bound gives C_WP upper bounds 5.198e-6, 4.091e-6, and 2.086e-6, not the reported 2.96e-9, 2.32e-9, and 1.18e-9.",
+      "effect": "The reported values imply unlisted radii near 2.38e-9 m.",
+      "disposition": "Weisz-Prater rows excluded from exact replay"
+    },
+    {
+      "finding_id": "KC-FAIL-008",
+      "source_id": "KC-PUB-006",
+      "category": "CHARACTERISTIC_LENGTH_MISMATCH",
+      "observation": "The source uses lcat=V/A=R/3 with the 0.15 Mears heat comparison, whereas KinetiCheck explicitly uses spherical particle radius R.",
+      "effect": "For the published inputs, lcat gives 0.0264599 and R gives 0.0793798; both pass but are not the same convention.",
+      "disposition": "diagnostic only; no code change"
+    },
+    {
+      "finding_id": "KC-FAIL-009",
+      "source_id": "KC-PUB-004",
+      "category": "INSUFFICIENT_PUBLIC_INPUT",
+      "observation": "A complete integrity-checked numerical record sufficient to identify every rate, density, length, concentration, and transfer-property convention was not obtained.",
+      "effect": "No value was promoted to a regression oracle.",
+      "disposition": "candidate rejected"
+    },
+    {
+      "finding_id": "KC-FAIL-010",
+      "source_id": "KC-PUB-005",
+      "category": "SOURCE_RETRIEVAL_FAILURE",
+      "observation": "The main article exposes reported C_WP and C_MM values, but the linked ESI input table could not be retrieved as an integrity-checkable file during the audit.",
+      "effect": "The published results alone are insufficient for independent replay.",
+      "disposition": "candidate rejected"
+    }
+  ]
+}

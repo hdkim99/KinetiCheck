@@ -1,0 +1,29 @@
+{
+  "run_id": "KC-PUB-003-PT1-PTN-GLYCEROL",
+  "rate": {
+    "value": 2.05e-6,
+    "unit": "kmol / kg / second",
+    "basis": "mass_catalyst",
+    "pellet_density": {
+      "value": 1775.0,
+      "unit": "kg / meter ** 3"
+    }
+  },
+  "particle_radius": {
+    "value": 6.617e-6,
+    "unit": "meter"
+  },
+  "criteria": {
+    "mears_mass": {
+      "reaction_order": 1.0,
+      "mass_transfer_coefficient": {
+        "value": 3.11e-3,
+        "unit": "meter / second"
+      },
+      "bulk_concentration": {
+        "value": 0.1,
+        "unit": "kmol / meter ** 3"
+      }
+    }
+  }
+}

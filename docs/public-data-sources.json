@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-08-23",
+  "tool_version": "0.1.0",
+  "redistribution_policy": "Publisher PDFs are not stored in this repository; only numerical facts required for reproducibility are transcribed.",
+  "search_log": {
+    "targets": [
+      "publisher article pages and electronic supplementary information",
+      "DOI landing pages",
+      "open-access license statements",
+      "reported transport-criterion values with sufficient input tables"
+    ],
+    "query_families": [
+      "Mears criterion heterogeneous catalyst supplementary information",
+      "Weisz-Prater criterion reported value catalyst supplementary information",
+      "Anderson heat criterion catalyst pellet",
+      "site:pubs.rsc.org Mears Weisz-Prater catalyst",
+      "site:nature.com Weisz-Prater Mears supplementary catalyst"
+    ],
+    "candidate_rule": "A value was promoted to a fixture only when the DOI, numerical input table, equation convention, and an integrity-checked source file were available. Partial criteria could be accepted while other rows from the same source were excluded.",
+    "retrieval_note": "Legacy RSC ESI links returned 404 during the audit. Archived captures of the publisher URLs were used only to integrity-check KC-PUB-001 and KC-PUB-002; the PDFs are not redistributed."
+  },
+  "sources": [
+    {
+      "id": "KC-PUB-001",
+      "status": "validated_numeric_reproduction",
+      "catalytic_system": "methane dehydroaromatization over 4 wt% Mo/HZSM-5",
+      "article_title": "Improved benzene production from methane dehydroaromatization over Mo/HZSM-5 catalysts via hydrogen-permselective palladium membrane reactors",
+      "doi": "10.1039/C5CY00934K",
+      "landing_url": "https://doi.org/10.1039/C5CY00934K",
+      "source_file": {
+        "publisher_filename": "c5cy00934k1.pdf",
+        "publisher_url": "https://www.rsc.org/suppdata/c5/cy/c5cy00934k/c5cy00934k1.pdf",
+        "audit_retrieval_url": "https://web.archive.org/web/20220615174746id_/https://www.rsc.org/suppdata/c5/cy/c5cy00934k/c5cy00934k1.pdf",
+        "bytes": 476555,
+        "sha256": "38984ed24aa69e8486fd24eaa636a7de1d8e3bbfaada13997240078ffd7ee6b4",
+        "license": "RSC standard copyright; no open reuse license identified",
+        "redistributed": false
+      },
+      "scope": [
+        "Mears external-mass equation",
+        "two 700 degree C operating-point calculations"
+      ],
+      "result": "Reported 3.910e-5 and 6.387e-5; KinetiCheck 3.909706899602532e-5 and 6.387068746418958e-5."
+    },
+    {
+      "id": "KC-PUB-002",
+      "status": "validated_with_source_discrepancy",
+      "catalytic_system": "acetic-acid hydrodeoxygenation over Mo2C",
+      "article_title": "Acetic acid hydrodeoxygenation on molybdenum carbide catalysts",
+      "doi": "10.1039/C8CY00358K",
+      "landing_url": "https://doi.org/10.1039/C8CY00358K",
+      "source_file": {
+        "publisher_filename": "c8cy00358k1.pdf",
+        "publisher_url": "https://www.rsc.org/suppdata/c8/cy/c8cy00358k/c8cy00358k1.pdf",
+        "audit_retrieval_url": "https://web.archive.org/web/20240604203453id_/https://www.rsc.org/suppdata/c8/cy/c8cy00358k/c8cy00358k1.pdf",
+        "bytes": 342750,
+        "sha256": "a27778674cf608b383515b4ddcce57cda70d94915d5f639e6d8caf6322f59ea5",
+        "license": "RSC standard copyright; no open reuse license identified",
+        "redistributed": false
+      },
+      "scope": [
+        "Weisz-Prater numerical value",
+        "diameter-to-radius conversion",
+        "declared surface-equals-bulk concentration assumption"
+      ],
+      "result": "Reported 4.96e-6; KinetiCheck 4.9573713957275605e-6. Equations S4-S7 print a surface-area factor S, but all four reported table values are reproduced only when S is omitted after converting the mass rate to mol kgcat^-1 s^-1."
+    },
+    {
+      "id": "KC-PUB-003",
+      "status": "partially_validated",
+      "catalytic_system": "glycerol oxidation over three Pt/Cu-CuZrOx catalysts",
+      "article_title": "Pt1 enhanced C-H activation synergistic with Ptn catalysis for glycerol cascade oxidation to glyceric acid",
+      "doi": "10.1038/s41467-022-33038-w",
+      "landing_url": "https://doi.org/10.1038/s41467-022-33038-w",
+      "source_file": {
+        "publisher_filename": "41467_2022_33038_MOESM1_ESM.pdf",
+        "publisher_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-33038-w/MediaObjects/41467_2022_33038_MOESM1_ESM.pdf",
+        "audit_retrieval_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-022-33038-w/MediaObjects/41467_2022_33038_MOESM1_ESM.pdf",
+        "bytes": 3828420,
+        "sha256": "4f3fa9b91216ad411608a660e1c70f7323dd59d5d2d96d049ca7acd45c35be42",
+        "license": "Creative Commons Attribution 4.0 International",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "redistributed": false
+      },
+      "scope": [
+        "three Mears external-mass calculations",
+        "upper-bound particle-size semantics"
+      ],
+      "result": "Reported 7.74e-5, 5.57e-5, and 4.31e-5; KinetiCheck 7.741996382636655e-5, 5.565252990353698e-5, and 4.308683305466238e-5. The Weisz-Prater rows were excluded from exact replay because R1 is published only as <1.0e-7 m while the reported values imply about 2.38e-9 m."
+    },
+    {
+      "id": "KC-PUB-004",
+      "status": "rejected_insufficient_inputs",
+      "catalytic_system": "ethanol oxidation over Au/CeO2",
+      "article_title": "The interplay between ceria particle size, reducibility, and ethanol oxidation activity of ceria-supported gold catalysts",
+      "doi": "10.1039/C7RE00175D",
+      "landing_url": "https://doi.org/10.1039/C7RE00175D",
+      "source_file": {
+        "publisher_filename": "c7re00175d1.pdf",
+        "publisher_url": "https://www.rsc.org/suppdata/c7/re/c7re00175d/c7re00175d1.pdf",
+        "audit_retrieval_url": null,
+        "bytes": null,
+        "sha256": null,
+        "license": "RSC standard copyright; no open reuse license identified",
+        "redistributed": false
+      },
+      "scope": ["candidate review"],
+      "result": "Published criteria were identified, but a complete, integrity-checked source file and all convention-defining inputs were not obtained; no regression value was adopted."
+    },
+    {
+      "id": "KC-PUB-005",
+      "status": "rejected_source_unavailable",
+      "catalytic_system": "CO2-assisted oxidative dehydrogenation of propane over VOx/SiO2",
+      "article_title": "Bridging the structural gap of supported vanadium oxides for oxidative dehydrogenation of propane with carbon dioxide",
+      "doi": "10.1039/D4EY00094C",
+      "landing_url": "https://doi.org/10.1039/D4EY00094C",
+      "source_file": {
+        "publisher_filename": "d4ey00094c1.pdf",
+        "publisher_url": "https://www.rsc.org/suppdata/d4/ey/d4ey00094c/d4ey00094c1.pdf",
+        "audit_retrieval_url": null,
+        "bytes": null,
+        "sha256": null,
+        "license": "Creative Commons Attribution-NonCommercial 3.0 Unported",
+        "license_url": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "redistributed": false
+      },
+      "scope": ["candidate review"],
+      "result": "The article reports C_WP=1.54e-3 and C_MM=2.82e-3, but the input table in the ESI was not retrievable with an integrity-checkable file during this audit."
+    },
+    {
+      "id": "KC-PUB-006",
+      "status": "diagnostic_only",
+      "catalytic_system": "Fischer-Tropsch synthesis in a cobalt catalyst particle",
+      "article_title": "Fischer-Tropsch reaction-diffusion in a cobalt catalyst particle: aspects of activity and selectivity for a variable chain growth probability",
+      "doi": "10.1039/C2CY20060K",
+      "landing_url": "https://doi.org/10.1039/C2CY20060K",
+      "source_file": {
+        "publisher_filename": "article HTML, Appendix C",
+        "publisher_url": "https://pubs.rsc.org/en/content/articlehtml/2012/cy/c2cy20060k",
+        "audit_retrieval_url": null,
+        "bytes": null,
+        "sha256": null,
+        "license": "RSC standard copyright; no open reuse license identified",
+        "redistributed": false
+      },
+      "scope": ["Mears external-heat characteristic-length convention audit"],
+      "result": "The source reports 0.026 using lcat=V/A=R/3 for a 2 mm sphere. The released KinetiCheck radius convention gives 0.07937975432819919; inserting R/3 gives 0.026459918109399728. This is a declared characteristic-length convention mismatch, not a software regression oracle."
+    }
+  ]
+}

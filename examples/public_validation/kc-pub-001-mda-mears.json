@@ -1,0 +1,29 @@
+{
+  "run_id": "KC-PUB-001-MDA-700C-WHSV750",
+  "rate": {
+    "value": 1.014e-7,
+    "unit": "kmol / kg / second",
+    "basis": "mass_catalyst",
+    "pellet_density": {
+      "value": 1099.2,
+      "unit": "kg / meter ** 3"
+    }
+  },
+  "particle_radius": {
+    "value": 1.5e-4,
+    "unit": "meter"
+  },
+  "criteria": {
+    "mears_mass": {
+      "reaction_order": 6.0,
+      "mass_transfer_coefficient": {
+        "value": 0.289,
+        "unit": "meter / second"
+      },
+      "bulk_concentration": {
+        "value": 8.878e-3,
+        "unit": "kmol / meter ** 3"
+      }
+    }
+  }
+}
