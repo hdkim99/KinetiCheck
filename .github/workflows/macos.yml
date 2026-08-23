@@ -48,7 +48,7 @@ jobs:
           python -m pip install -e ".[dev]"
       - name: Focused scientific and CLI smoke
         run: |
-          python -m pytest tests/test_core.py tests/test_units_application.py tests/test_gui.py
+          python -m pytest --no-cov tests/test_core.py tests/test_units_application.py tests/test_gui.py
           kineticheck validate
           kineticheck evaluate examples/operating_point.json --output "$RUNNER_TEMP/point.json"
       - name: GUI import, workflow, export, close, and process exit
