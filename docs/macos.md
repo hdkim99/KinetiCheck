@@ -7,11 +7,15 @@ non-interactive `Agg` backend inside the plotting call.
 
 Supported declaration for 0.1.0:
 
-- Locally verified: macOS 27.0, Apple Silicon (`arm64`), Python 3.14.7, Tk window/core/export/close smoke
-- macOS: dedicated workflow target `macos-15`; older releases are not claimed without a run
-- Python: 3.10–3.14 metadata; the macOS workflow exercises the configured current version
-- Architecture: GitHub-hosted environment and local machine architecture are recorded in logs
-- Intel Mac: not verified unless explicitly recorded in a release validation report
+- Locally verified: macOS 27.0, Apple Silicon (`arm64`), Python 3.14.7, Tk
+  window/core/export/close smoke
+- Hosted verification: macOS 15.7.7, Apple Silicon (`arm64`), Python 3.12.10, clean-wheel
+  CLI plus Tk window/core/export/close smoke
+  ([Actions run 32630114637](https://github.com/hdkim99/KinetiCheck/actions/runs/32630114637))
+- Python 3.10: clean-wheel core and CLI smoke verified; GUI not verified
+- Python 3.11 and 3.13 GUI combinations: not verified
+- Python package metadata: 3.10–3.14
+- Older macOS releases and Intel Mac: not verified
 
 Clean smoke command:
 
@@ -30,4 +34,7 @@ KinetiCheck GUI smoke PASS: window, calculation, export, close
 
 On failure, report the macOS version, Apple Silicon/Intel, `python --version`, package version,
 installation command, output of `python -m tkinter`, and the complete traceback. A Python build that
-omits Tk can still run all core and CLI workflows.
+omits Tk can still run all core and CLI workflows. Tk is part of the Python runtime rather than a
+PyPI-installable KinetiCheck dependency, so the `gui` extra intentionally does not install a second
+GUI binding. On macOS, use a Python distribution that includes Tk; verify it with
+`python -m tkinter` before launching KinetiCheck.

@@ -81,10 +81,10 @@ The core/CLI import path does not import Tkinter or matplotlib. Matplotlib is im
 plot command and uses `Agg`; the Tk GUI currently displays tabular results and therefore does not
 select a matplotlib GUI backend.
 
-- Python: 3.10–3.14
+- Python package metadata: 3.10–3.14; GUI smoke verified on Python 3.12 and 3.14
 - Linux: scientific CI on the repository DGX ARM64 runner
-- macOS: tested by a dedicated GitHub-hosted macOS workflow and local smoke command where reported
-- Architectures: ARM64 is tested; Intel macOS remains not verified unless a CI run says otherwise
+- macOS: 15.7.7 hosted and 27.0 local, both on Apple Silicon; older versions are not yet verified
+- Architectures: ARM64 is tested; Intel macOS remains not verified
 
 Run `python -m kineticheck.gui --smoke-test` to exercise window creation, core calculation, JSON
 export, close, and process exit. See [macOS notes](docs/macos.md).
