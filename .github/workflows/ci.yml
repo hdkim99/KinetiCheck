@@ -49,10 +49,15 @@ jobs:
           echo "$runtime/usr/bin" >> "$GITHUB_PATH"
           echo "LD_LIBRARY_PATH=$runtime/usr/lib/aarch64-linux-gnu:${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"
           echo "TK_LIBRARY=$runtime/usr/share/tcltk/tk8.6" >> "$GITHUB_ENV"
-      - name: Install project and validation tools
+      - name: Install project and validation tools in an isolated environment
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e ".[dev]"
+          set -euo pipefail
+          ci_env="$RUNNER_TEMP/kineticheck-ci-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          python -m venv "$ci_env"
+          "$ci_env/bin/python" -m pip install --upgrade pip
+          "$ci_env/bin/python" -m pip install -e ".[dev]"
+          "$ci_env/bin/python" -m pip check
+          echo "$ci_env/bin" >> "$GITHUB_PATH"
       - name: Ruff format
         run: python -m ruff format --check .
       - name: Ruff lint
