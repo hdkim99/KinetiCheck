@@ -9,7 +9,7 @@ ROOT = Path(__file__).parents[1]
 def test_package_identity_and_gui_extra() -> None:
     metadata = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     assert 'name = "kineticheck"' in metadata
-    assert 'version = "0.1.0"' in metadata
+    assert 'version = "0.1.1"' in metadata
     assert "gui = []" in metadata
     base_dependencies = metadata.split("dependencies = [", 1)[1].split("]", 1)[0].casefold()
     assert all(binding not in base_dependencies for binding in ("pyqt", "pyside", "qt"))
